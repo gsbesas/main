@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<template id="report_invoice_document">
+		<div class="header">
+	        <center><h3>PROFORMA INVOICE</h3></center>
+	    </div>
+        <div class="footer">
+        	<div class="text-right" style="border-top: 1px solid black;">        
+
+	            <span>Page&#160;<span class="page"/>&#160;
+	                of&#160;<span class="topage"/>
+	            </span>
+	        </div>
+        </div>
+	    <t t-call="web.external_layout">
+	        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+	        <div class="page">
+            	<div class="oe_structure"/>
+	            	<div class="row">
+					    <div class="col-auto mw-100 mb-6" style='margin-left:100px;'>
+	                        <strong>SHIPPER</strong><br/>
+	                        <span>GSBE SAS, ALLE GUIMET,</span><br/>
+	                        <span>69250 FLEURIEU SUR SAÔNE</span><br/>
+	                        <span>FRANCE</span><br/>
+
+	                        <div style='margin-top:10px;'>
+	                        	<span>C/O ERIC BESSE</span><br/>
+	                        	<span t-field="doc.user_id.partner_id.email"/>-<br/>
+	                        	<span t-field="doc.user_id.partner_id.phone"/>
+	                        </div>	
+
+					    </div>
+
+					    <div class="col-auto mw-100 mb-6" >
+	                        <span><b>Shipment ID:</b>&#160;<span t-field="doc.reference"/></span><br/>
+	                        <span><b>Date:</b>&#160;<span t-field="doc.date_order" t-options="{&quot;format&quot;: &quot;MMMM/dd/yyyy&quot;}" /></span><br/>
+	                        <span><b>Incoterm:</b>&#160;<span t-field="doc.incoterm.name"/></span><br/>
+					    </div>
+					    
+					</div>
+
+					<div class="row" style='margin-top:60px;'>
+					    <div class="col-auto mw-100 mb-6" style='margin-left:100px;'>
+	                        <strong>SOLD TO</strong>
+	                        <div t-field="doc.partner_id"
+                				t-options='{"widget": "contact", "fields": ["address", "name", "phone"]}'/>
+					    </div>
+
+					    <div class="col-auto mw-100 mb-6" >
+	                        <strong>IMPORTER OF RECORD (IOR)</strong><br/>
+	                        <span>KROOGA SAS</span><br/>
+	                        <span>21 PLACE DE LA REPUBLIQUE, PARIS 75003, FRANCE</span><br/>
+	                        <span><b>EIN : 98-1329770</b></span><br/>
+
+	                        <div style='margin-top:10px;'>
+	                        	<span>
+	                        		C/O ERIC BESSE, <br/>ebesse@gsbesas.com <br/>
+	                        		- 1 206 557 6642
+	                        	</span>
+	                        </div>	
+					    </div>
+					</div>
+
+					<div class="row" style='margin-top:30px;'>
+					    <div class="col-auto mw-100 mb-6" style='margin-left:100px;'>
+					    	<span t-field="doc.user_id.name"/><br/>
+	                        <span t-field="doc.user_id.partner_id.email"/>- <br/>
+	                        <span t-field="doc.user_id.partner_id.phone"/>
+					    </div>
+
+					    <div class="col-auto mw-100 mb-6" >
+	                        <strong>FSVP PARTY</strong><br/>
+	                        <span>KROOGA SAS, 444 ALASKA AVENUE, SUITE #V9191</span><br/>
+	                        <span>TORRANCE, CA 90503, USA</span><br/>
+	                        <span><b>DUNS : 261670176</b></span><br/>
+
+	                        <div style='margin-top:10px;'>
+	                        	<span>Contact : Sam GONZALES</span><br/>
+	                        	<span>sam@krooga.com - +1 206 557 6642</span>
+	                        </div>	
+					    </div>
+					</div>
+
+					<table class="table" style='margin-top:30px;width:100%;border-bottom:2px solid white !important;'>
+						<tbody style="display: table-row-group;">
+							<tr style='border:2px solid black;width:100%;'>
+								<th style='border:2px solid black;width:5%;vertical-align: top;'>UNITS</th>
+								<th style='border:2px solid black;width:8%;vertical-align: top;'>HS</th>
+								<th style='border:2px solid black;width:56%;vertical-align: top;'>DESCRIPTION OF GOODS</th>
+								<th style='border:2px solid black;width:8%;vertical-align: top;'>COO</th>
+								<th style='border:2px solid black;width:3%;vertical-align: top;'>UNIT VALUE</th>
+								<th style='border:2px solid black;width:10%;vertical-align: top;'>TOTAL VALUE</th>
+								<th style='border:2px solid black;width:10%;vertical-align: top;'></th>
+							</tr>
+						
+							
+							<t t-set="final_total_value" t-value="0" />
+                    		<t t-foreach="doc.order_line" t-as="line">
+                    			<t t-set="total_unit" t-value="0" />
+								<t t-set="total_value" t-value="0" />
+                    			<tr>
+	                    			<td class="text-center" style='border:2px solid black;width:5%;vertical-align: top;'><span t-esc="'%.0f'% line.product_uom_qty"/></td>
+
+	                    			<td style='border:2px solid black;width:5%;vertical-align: top;'>
+	                    				<span t-field="line.product_id.x_studio_many2one_field_PmIaz.x_studio_hs_code_1"/>
+	                    			</td>
+	                    				                    			
+	                    			<td style='border:2px solid black;width:5%;vertical-align: top;'>
+	                    				<span t-field="line.product_id.name"/><br/>
+	                    				Brand :&#160;<span t-field="line.product_id.x_studio_many2one_field_mapCo"/><br/>
+	                    				Manufacturer :&#160;<span t-field="line.product_id.x_studio_many2one_field_mapCo.x_studio_partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"]}'/>
+	                    				
+	                    			</td>
+	                    			
+	                    			<td class="text-center" style='border:2px solid black;width:5%;vertical-align: top;'>
+	                    				<span t-field="line.product_id.x_studio_many2one_field_mapCo.x_studio_partner_id.country_id.name"/>
+	                    			</td>
+	                    			
+	                    			<td class="text-center" style='border:2px solid black;width:5%;vertical-align: top;'>
+	                    				<t t-set="total_unit" t-value="(line.product_id.x_studio_us_inbound_fee+line.product_id.standard_price)" />
+	                    				<t t-esc="total_unit"/>
+	                    			</td>
+	                    			
+	                    			<td class="text-center" style='border:2px solid black;width:5%;vertical-align: top;'>
+	                    				<t t-set="total_value" t-value="line.product_uom_qty*total_unit" />
+	                    				<t t-esc="total_value"/>
+	                    				<t t-set="final_total_value" t-value="final_total_value+total_value" />
+	                    			</td>
+
+	                    			<td style='border:2px solid black;width:5%;vertical-align: top;'><span t-field="line.currency_id"/></td>
+	                    		</tr>
+	                    	</t>
+                    		<tr>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'></td>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'></td>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'><strong>INVOICE LINE TOTALS</strong></td>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'></td>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'></td>
+                    			<td style='border-left:2px solid white;border-bottom:2px solid white !important;'>
+                    			
+                    				<t t-esc="'%.2f'% final_total_value"/>
+                    			</td>
+                    			<td style='border-left:2px solid white;border-right:2px solid white;border-bottom:2px solid white !important;'><span t-field="doc.currency_id"/></td>
+                    		</tr>
+                    	</tbody>
+					</table>
+            		<div class='margin-top:50px;'>
+            			<p><span t-field="doc.note"/></p>
+            		</div>
+			</div>
+
+	    </t>
+	</template>
+
+
+	<template id="report_proforma">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="invoice_new_template.report_invoice_document" t-lang="doc.partner_id.lang"/>
+	        </t>
+	    </t>
+	</template>
+</odoo>
