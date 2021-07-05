@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_fba_package_gsbesas_document">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+                <div style="width: 70%; display: inline-table; height:14rem;">
+                    <div class="row zero_min_height">
+                        <div class="col-12">
+                            <div style="border-bottom: 3px solid black; padding-top: 80px;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" name="company_address">
+                            <div t-field="o.company_id.partner_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                            />
+                        </div>
+                    </div>
+
+                    <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+                    <t t-if="partner" name="partner_header">
+                        <t t-set="address">
+                            <div t-esc="partner"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'/>
+                       </t>
+                    </t>
+
+                    <div class="page">
+                        <div class="col-xs-4" >
+                            <table class="table" style="border-collapse: collapse;border: 1px solid black;width: 100%;font-size: 12px;line-height: 2px;background-color:black;color: white;">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.barcode"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <t t-if="o.barcode">
+                                            <img alt="Barcode" t-if="len(o.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.barcode or ''), 700, 150)" style="width:250%;height::4rem;"/>
+                                            <img alt="Barcode" t-elif="len(o.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.barcode or ''), 700, 150)" style="width:250%;height::4rem;"/>
+                                            <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.barcode or ''), 700, 150)" style="width:250%;height::4rem;"/>
+                                        </t>
+                                    </td>
+                                    <td style="width: 25%;padding-top: 102px">
+                                        <span t-field="o.box_number"/>
+                                    </td>
+                                    <td class="text-right align-right" style="height: 6rem; padding-top: 100px">
+                                        <t t-if="o.barcode">
+                                            <img alt="Barcode" t-if="len(o.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.barcode or ''), 720, 140)" style="width:150%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                            <img alt="Barcode" t-elif="len(o.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.barcode or ''), 720, 140)" style="width:150%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                            <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.barcode or ''), 720, 140)" style="width:150%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                            <!--<span t-field="o.box_number"/>-->
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table">
+                                <div class="col-10" style="border-bottom: 3px solid black;margin-top: -90px;"/>
+                                <tr>
+                                    <td class="text-center">
+                                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                        <span t-field="o.barcode"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <t t-if="o.barcode">
+                                            <img alt="Barcode" t-if="len(o.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.barcode or ''), 600, 150)" style="width:55%;height::4rem;"/>
+                                            <img alt="Barcode" t-elif="len(o.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.barcode or ''), 600, 150)" style="width:55%;height::4rem;"/>
+                                            <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.barcode or ''), 600, 150)" style="width:55%;height::4rem;"/>
+                                        </t>
+                                        <t t-else=""><span class="text-muted">No barcode available</span></t>
+                                    </td>
+                                </tr>
+                            </table>
+
+<!--                            <div class="text-left" style="padding-top: 1px;">
+                                <t t-if="o.barcode">
+                                    <img alt="Barcode" t-if="len(o.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.barcode or ''), 600, 150)" style="width:75%;height::4rem;"/>
+                                    <img alt="Barcode" t-elif="len(o.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.barcode or ''), 600, 150)" style="width:75%;height::4rem;"/>
+                                    <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.barcode or ''), 600, 150)" style="width:75%;height::4rem;"/>
+                                    <span t-field="o.box_number"/>
+                                </t>
+                            </div>
+                            <div class="text-right">
+                                <t t-if="o.barcode">
+                                    <img alt="Barcode" t-if="len(o.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.barcode or ''), 1000, 350)" style="width:20%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                    <img alt="Barcode" t-elif="len(o.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.barcode or ''), 1000, 350)" style="width:20%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                    <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.barcode or ''), 1000, 350)" style="width:20%;height::4rem;transform: rotate(90deg);-webkit-transform: rotate(90deg);"/>
+                                    <span t-field="o.box_number"/>
+                                    <div class="col-9" style="border-bottom: 3px solid black;"/>
+                                    <span t-field="o.box_number"/>
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                </t>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </t>
+         </t>
+    </template>
+
+
+    <template id="report_fba_package_gsbesas">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="gsbesas_product_label.report_fba_package_gsbesas_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </template>
+    
+<!--    <template id="external_layout_fba_package">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+             Multicompany 
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.key}}"><t t-raw="0"/></t>
+        <t t-else="else" t-call="web.external_layout_standard"><t t-raw="0"/></t>
+
+    </template>-->
+    
+</odoo>

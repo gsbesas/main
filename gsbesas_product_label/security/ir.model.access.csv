@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gsbesas_product_lable_gsbesas_product_lable,gsbesas_product_lable.gsbesas_product_lable,model_gsbesas_product_lable_gsbesas_product_lable,base.group_user,1,1,1,1

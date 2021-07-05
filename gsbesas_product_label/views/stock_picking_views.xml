@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+        <record id="view_picking_form_gsbesas" model="ir.ui.view">
+            <field name="name">stock.picking.form.gsbesas</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="barcode"/>
+                    <field name="box_number"/>
+                </xpath>
+
+            </field>
+        </record>
+
+  </data>
+</odoo>
