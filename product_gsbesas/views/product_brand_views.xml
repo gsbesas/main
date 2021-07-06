@@ -2,13 +2,6 @@
 <odoo>
     <data>
         
-    <menuitem id="product_brand_menu_root"
-            name="Brands"
-            web_icon="sale_management,static/description/icon.png"
-            active=""
-            action="product_gsbesas.product_brand_action"
-            sequence="10"/>
-    
 <!--    <menuitem id="product_brand_menu"
             name="Brands"
             parent="product_brand_menu_root"
@@ -109,6 +102,13 @@
             </p>
         </field>
     </record>
+    
+    <menuitem id="product_brand_menu_root"
+            name="Brands"
+            web_icon="sale_management,static/description/icon.png"
+            active=""
+            action="product_gsbesas.product_brand_action"
+            sequence="10"/>
 
 
     </data>
