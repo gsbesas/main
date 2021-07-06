@@ -3,33 +3,32 @@
     <data>
         <template id="report_simple_label_gsbesas">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
-            <div style="width: 105%; height: 100%; display: inline-table; height:14rem;">
-            <!--<div style="width: 55%; height: 83px; display: inline-table; height:14rem;">-->
+            <div style="width: 110%; display: inline-table; height:14rem;">
                 <!--<table class="table table-bordered mb-0" style="border: 2px solid black">-->
-                <table class="table table-bordered mb-0">
+                <table>
                     <tr>
-                        <th class="table text-center" style="height: 4rem; padding: 0">
+                        <th class="table text-center" style="line-height: 100%;">
                             <!--<span class="text-left" style="font-weight: normal; font-size:10pt; vertical-align: top">NEW</span>-->
                             <span class="text-left" style="font-weight: normal; font-size:6pt; vertical-align: top">NEW</span>
                             &#160;&#160;
-                            <strong style="font-size:10pt" t-field="product.display_name"/>
+                            <strong style="font-size:10pt;" t-field="product.display_name"/>
                         </th>
                     </tr>
                     <tr>
-                        <td class="text-center align-middle" style="height: 6rem">
+                        <td class="text-center align-middle">
                             <t t-if="product.barcode">
-                                <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
-                                <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
-                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
+                                <img alt="Barcode" t-if="len(product.fnsku_usa_barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(product.barcode or ''), 600, 120)" style="width:100%;height::2rem;"/>
+                                <img alt="Barcode" t-elif="len(product.fnsku_usa_barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(product.barcode or ''), 600, 120)" style="width:100%;height::2rem;"/>
+                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(product.fnsku_usa_barcode or ''), 600, 120)" style="width:100%;height::2rem;"/>
                                 <span style="font-size:9pt" t-field="product.default_code"/>&#160;&#160;&#160;&#160;
-                                <strong>Exp:<span t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="font-size:8pt; font-weight: bold;"/></strong>
+                                <strong><span style="font-size:9pt; font-weight: bold;">Exp:</span><span t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="font-size:8pt; font-weight: bold;"/></strong>
                             </t>
                             <t t-else=""><span class="text-muted">No barcode available</span></t>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="height: 2rem; padding: 0">
-                            <strong style="font-size:10pt" t-field="product.contents"/>
+                        <td class="text-center">
+                            <strong style="font-size:9pt" t-field="product.contents"/>
                         </td>
                     </tr>
                 </table>
