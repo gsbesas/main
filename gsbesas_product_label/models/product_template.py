@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
     def get_last_po_date(self):
         for record in self:
             move_line = self.env['stock.move.line'].search(
-                [('location_id.usage', '=', 'supplier'),('location_dest_id.usage', '=', 'internal')],
+                [('location_id.usage', '=', 'supplier'),('location_dest_id.usage', '=', 'internal'),('state', '!=', 'cancel')],
                 order='date desc',
                 limit=1
             )
