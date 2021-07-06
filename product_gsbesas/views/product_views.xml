@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+        <record id="product_template_form_view_product_gsbesas" model="ir.ui.view">
+            <field name="name">product.template.common.form.product.gsbesas</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="before">
+                    <field name="product_brand_id" options="{'no_create': True}"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='inventory']" position="after">
+                    <page string="Amazon Data" name="amazondata">
+                        <group name="amazondata">
+                            <group name="group_eu" string="EU">
+                                <field name="eu_asin"/>
+                            </group>
+                            <group name="group_usa" string="USA">
+                                <field name="us_asin"/>
+                                <field name="cogs_usd"/>
+                                <field name="fnsku_usa_barcode"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Ingredients" name="ingredients">
+                        <group name="ingredients">
+                            <group>
+                                <field name="french_ingredients"/>
+                                <field name="allergens"/>
+                            </group>
+                            <group>
+                                <field name="english_ingredients"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+  </data>
+</odoo>

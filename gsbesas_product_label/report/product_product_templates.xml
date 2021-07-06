@@ -3,13 +3,16 @@
     <data>
         <template id="report_simple_label_gsbesas">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
-            <div style="width: 40%; display: inline-table; height:14rem;">
-                <table class="table table-bordered mb-0" style="border: 2px solid black">
+            <!--<div style="width: 105%; height: 100%; display: inline-table; height:14rem;">-->
+            <div style="width: 55%; height: 83px; display: inline-table; height:14rem;">
+                <!--<table class="table table-bordered mb-0" style="border: 2px solid black">-->
+                <table class="table table-bordered mb-0">
                     <tr>
                         <th class="table text-center" style="height: 4rem; padding: 0">
-                            <span class="text-left" style="font-weight: normal; font-size:10pt; vertical-align: top">NEW</span>
+                            <!--<span class="text-left" style="font-weight: normal; font-size:10pt; vertical-align: top">NEW</span>-->
+                            <span class="text-left" style="font-weight: normal; font-size:6pt; vertical-align: top">NEW</span>
                             &#160;&#160;
-                            <strong t-field="product.display_name"/>
+                            <strong style="font-size:10pt" t-field="product.display_name"/>
                         </th>
                     </tr>
                     <tr>
@@ -18,15 +21,15 @@
                                 <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
                                 <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
                                 <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height::4rem;"/>
-                                <span t-field="product.default_code"/>&#160;&#160;&#160;&#160;
-                                <strong>Exp:<span t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}'/></strong>
+                                <span style="font-size:9pt" t-field="product.default_code"/>&#160;&#160;&#160;&#160;
+                                <strong>Exp:<span t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="font-size:8pt; font-weight: bold;"/></strong>
                             </t>
                             <t t-else=""><span class="text-muted">No barcode available</span></t>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center" style="height: 2rem; padding: 0">
-                            <strong t-field="product.contents"/>
+                            <strong style="font-size:10pt" t-field="product.contents"/>
                         </td>
                     </tr>
                 </table>
@@ -49,25 +52,31 @@
         
         <template id="report_simple_label_gsbesas_medium">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
-            <div style="width: 50%; display: inline-table; height:14rem;">
+            <!--<div style="width: 50%; display: inline-table; height:14rem;">-->
+            <!--<div style="width: 105%; display: inline-table; height:14rem;">-->
+            <div style="width: 55%; height: 83px; display: inline-table; height:14rem;">
                 <table class="table table-bordered mb-0" style="border: 2px solid black">
                     <tr>
                         <th class="table text-center" style="height: 4rem; padding-top: 0; padding-bottom: 0">
                             <span class="text-left" style="font-weight: normal; font-size:10pt; vertical-align: top">NEW</span>
                             &#160;&#160;
-                            <strong t-field="product.display_name"/>
+                            <!--<strong t-field="product.display_name"/>-->
+                            <strong style="font-size:10pt" t-field="product.display_name"/>
                         </th>
                     </tr>
                     <tr>
                         <td class="text-right align-right" style="height: 6rem; padding-bottom: 0">
                             <t t-if="product.barcode">
-                                <span t-field="product.default_code"/>
+                                <!--<span t-field="product.default_code"/>-->
+                                <span t-field="product.default_code" style="font-size:8pt"/>
                                 <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(product.barcode or ''), 600, 150)" style="width:65%;height::4rem;"/>
                                 <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(product.barcode or ''), 600, 150)" style="width:65%;height::4rem;"/>
                                 <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(product.barcode or ''), 600, 150)" style="width:65%;height::4rem;"/>
-                                <strong t-field="product.contents" style="font-size:10pt"/>
+                                <!--<strong t-field="product.contents" style="font-size:10pt"/>-->
+                                <strong t-field="product.contents" style="font-size:8pt"/>
                                 &#160;&#160;&#160;&#160;
-                                <strong>Exp:<span class="text-left" t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="vertical-align: top; padding-left: 0px"/></strong>
+                                <!--<strong>Exp:<span class="text-left" t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="vertical-align: top; padding-left: 0px"/></strong>-->
+                                <strong>Exp:<span t-field="product.exp_date" t-options='{"format": "dd-MMM-yyyy"}' style="vertical-align: top; padding-left: 0px; font-size:10pt; font-weight: bold;"/></strong>
                             </t>
                             <t t-else=""><span class="text-muted">No barcode available</span></t>
                         </td>
@@ -75,13 +84,15 @@
                     <tr>
                         <td class="text-center" style="line-height: 100%; padding-top: 0">
                             <strong>Ingredients:</strong>
-                            <span t-field="product.description" style="font-size:7pt; line-height: 100%"/>
+                            <!--<span t-field="product.description" style="font-size:7pt; line-height: 100%"/>-->
+                            <span t-field="product.description" style="font-size:6pt; line-height: 60%"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center" style="padding-bottom: 0">
                             <strong>Manufacturer:</strong>
-                            <span t-field="product.manufacture" style="font-size:11pt"/>
+                            <!--<span t-field="product.manufacture" style="font-size:11pt"/>-->
+                            <span t-field="product.manufacture" style="font-size:10pt"/>
                         </td>
                     </tr>
                 </table>
