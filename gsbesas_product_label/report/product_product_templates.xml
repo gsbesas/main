@@ -3,7 +3,7 @@
     <data>
         <template id="report_simple_label_gsbesas">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
-            <div style="width: 110%; display: inline-table; height:14rem;">
+            <div style="width: 110%;">
                 <!--<table class="table table-bordered mb-0" style="border: 2px solid black">-->
                 <table>
                     <tr>
