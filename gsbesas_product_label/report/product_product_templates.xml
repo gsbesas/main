@@ -3,8 +3,8 @@
     <data>
         <template id="report_simple_label_gsbesas">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
-            <!--<div style="width: 105%; height: 100%; display: inline-table; height:14rem;">-->
-            <div style="width: 55%; height: 83px; display: inline-table; height:14rem;">
+            <div style="width: 105%; height: 100%; display: inline-table; height:14rem;">
+            <!--<div style="width: 55%; height: 83px; display: inline-table; height:14rem;">-->
                 <!--<table class="table table-bordered mb-0" style="border: 2px solid black">-->
                 <table class="table table-bordered mb-0">
                     <tr>
@@ -53,8 +53,8 @@
         <template id="report_simple_label_gsbesas_medium">
             <!--<div style="width: 32%; display: inline-table; height:14rem;">-->
             <!--<div style="width: 50%; display: inline-table; height:14rem;">-->
-            <!--<div style="width: 105%; display: inline-table; height:14rem;">-->
-            <div style="width: 55%; height: 83px; display: inline-table; height:14rem;">
+            <div style="width: 105%; display: inline-table; height:14rem;">
+            <!--<div style="width: 55%; height: 83px; display: inline-table; height:14rem;">-->
                 <table class="table table-bordered mb-0" style="border: 2px solid black">
                     <tr>
                         <th class="table text-center" style="height: 4rem; padding-top: 0; padding-bottom: 0">
