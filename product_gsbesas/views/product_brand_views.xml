@@ -53,7 +53,7 @@
         <field name="arch" type="xml">
             <tree string="Product Brands" multi_edit="1" duplicate="false" sample="1">
                 <field name="name" />
-                <field name="company_id" options="{'no_create': True}"/>
+                <field name="partner_id" options="{'no_create': True}"/>
                 <field name="phone" widget="phone" />
                 <field name="email" widget="email" />
             </tree>
