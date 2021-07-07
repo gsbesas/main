@@ -16,8 +16,8 @@ class ProductBrand(models.Model):
     
     
     name = fields.Char('Name', index=True, required=True, translate=True)
-    company_id = fields.Many2one(
-        'res.company', 'Company', index=1)
+    partner_id = fields.Many2one(
+        'res.partner', string='Company')
     phone = fields.Char('Phone')
     email = fields.Char('Email')
     

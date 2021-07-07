@@ -11,10 +11,15 @@ class ProductTemplate(models.Model):
     
     def get_last_po_date(self):
         for record in self:
+            product_ids = record.product_variant_ids and record.product_variant_ids.ids or []
             move_line = self.env['stock.move.line'].search(
-                [('location_id.usage', '=', 'supplier'),('location_dest_id.usage', '=', 'internal'),('state', '!=', 'cancel')],
+                [('location_id.usage', '=', 'supplier'),
+                ('location_dest_id.usage', '=', 'internal'),
+                ('state', '!=', 'cancel'),('product_id', 'in', tuple(product_ids))],
                 order='date desc',
                 limit=1
             )
+            exp_date = False
             if move_line:
-                record['exp_date'] = move_line.expiration_date
+                exp_date = move_line.expiration_date
+            record.exp_date = exp_date
